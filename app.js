@@ -7,12 +7,15 @@ const app=express();
 //Template Engine
 app.engine("handlebars", handlebars({defaultLayout: 'main'}));
 app.set('view engine','handlebars');
+app.use('/js',express.static('js'));
+app.use('/css',express.static('css'));
 
 //Routes and Templates
-app.get("/", function(req,res){
+app.get("/:id?", function(req,res){
     // res.send("Essa é minha pagina inicial!");
     //res.sendFile(__dirname+"/index.html");
-    res.render('index');
+    res.render('index',{ho:req.params.id});
+    //console.log(req.params.id);
 
 })
 
